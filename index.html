@@ -236,7 +236,7 @@ section{padding:120px 0}
         <div class="orbit">✦</div>
       </div>
     </div>
-    <div class="scroll">SCROLL · SLOWLY</div>
+    <div class="scroll"> · </div>
   </section>
 
   <section>
@@ -400,6 +400,32 @@ toggle.addEventListener('click',()=>{
   if(musicPlaying) stopMusic(); else startMusic();
 });
 
+</script>
+
+  <!-- Background Music -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="birthday-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const music = document.getElementById("bgMusic");
+  const musicToggle = document.getElementById("musicToggle");
+
+  musicToggle.addEventListener("click", async () => {
+    if (music.paused) {
+      try {
+        await music.play();
+        musicToggle.textContent = "♫";
+        musicToggle.classList.add("playing");
+      } catch (err) {
+        console.log("Music could not be played:", err);
+      }
+    } else {
+      music.pause();
+      musicToggle.textContent = "🔇";
+      musicToggle.classList.remove("playing");
+    }
+  });
 </script>
 </body>
 </html>
